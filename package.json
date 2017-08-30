@@ -1,0 +1,23 @@
+{
+  "name": "node-with-mongo",
+  "version": "2.0.0",
+  "description": "this is sample node application using node js and mongo db just for the learning point of view",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "vivek kumar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
+    "express": "^4.15.3",
+    "express-validator": "^3.2.1",
+    "mongodb": "^2.2.30"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

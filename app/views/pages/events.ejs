@@ -1,0 +1,29 @@
+<h1><%= topicHead %></h1>
+<div class="jumbotron text-center">
+	<h1>All Rides</h1>
+</div>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>Ride From</th>
+			<th>Rider's Name</th>
+			<th>Rider's Phone</th>
+			<th>Ride Start Time</th>
+			<th>Ride End Time</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<% for (var i = 0; i < rides.length; i++) { %>
+			<tr>
+				<td><%= rides[i].ride.rider_start %></td>
+				<td><%= rides[i].ride.rider_name %></td>
+				<td><%= rides[i].ride.rider_phone %></td>
+				<td><%= rides[i].ride.start_time %></td>
+				<td><%= rides[i].ride.end_time %></td>
+			</tr>
+			<% } %> 		
+					
+	</tbody>
+</table>
+
