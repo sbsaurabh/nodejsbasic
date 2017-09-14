@@ -1,4 +1,4 @@
-const fs = require('fs');
+//const fs = require('fs');
 const express = require('express');
 const bodyParser= require('body-parser');
 var path = require('path');
@@ -15,9 +15,10 @@ app.use(expressLayouts);
 var viewPath = path.join(__dirname, 'app/views');
 app.set('views', viewPath);
 
- 
-var MongoClient = require('mongodb').MongoClient
-var URL = 'mongodb://localhost:27017/car_pooling'
+const mongoose = require('mongoose');
+//DB setup
+mongoose.connect('mongodb://localhost:/car_pooling',{ useMongoClient: true });
+
 
 app.use(require('./app/routes'));
 
@@ -30,9 +31,9 @@ app.use(express.static(__dirname + '/app/public'));
 // MongoClient.connect(URL, function(err, db) {
 //   if (err) return
 
-app.listen(3010, () => {
-	console.log('listening on 3010')
-})
+app.listen(3010);
+	console.log('listening on 3010');
+
 
 // 	app.get('/', (req, res) => {
 //   		db.collection('quotes').find().toArray((err, result) => {
@@ -45,11 +46,5 @@ app.listen(3010, () => {
 
 
 
- 
+
 // })
-
-
-
-
-  	
-
