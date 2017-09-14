@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "nodejs server.js",
     "dev": "nodemon server.js"
   },
   "author": "vivek kumar",
@@ -15,7 +15,10 @@
     "ejs": "^2.5.7",
     "express": "^4.15.3",
     "express-validator": "^3.2.1",
-    "mongodb": "^2.2.30"
+    "mongodb": "^2.2.30",
+    "express-ejs-layouts": "~2.3.1",
+    "node-geocoder": "~3.20.0",
+    "mongoose": "~4.11.11"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
