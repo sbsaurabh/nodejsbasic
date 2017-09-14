@@ -11,4 +11,4 @@ module.exports = router;
 router.get('/', mainController.showHome);
 router.get('/events',eventsController.showEvents);
 router.get('/rides',ridesController.showRides)
-
+router.post('/rides',ridesController.raiseRides);
