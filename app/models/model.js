@@ -4,15 +4,26 @@ var Schema = mongoose.Schema;
 var Rides = new Schema({
   rider_name:String,
   rider_phone:String,
-  rider_pickup_location:String,
-  rider_drop_location:String,
-  rider_stopover_location:[{}],
+  rider_pickup_location: {
+        type: { type: String },
+        coordinates: [[['number']]],
+    },
+  rider_drop_location: {
+        type: { type: String },
+        coordinates:[[['number']]],
+    },
+  rider_stopover_location:[{type: { type: String },
+  coordinates: [[['number']]],}],
   rider_pickup_date:String,
   rider_start_time_hours:String,
   seats_available:Number,
   price_per_cotraveller:Number,
   created_at:Date,
 })
+
+Rides.index({ "rider_pickup_location": "2dsphere" });
+Rides.index({ "rider_drop_location": "2dsphere" });
+Rides.index({ "rider_stopover_location": "2dsphere" });
 
 var Rides = mongoose.model('rides', Rides);
 

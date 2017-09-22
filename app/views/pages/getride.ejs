@@ -1,0 +1,64 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <form name="getrideform" method="POST" action="/getride">
+    <table id ="getrideform">
+        <tr>
+        <td>Rider's Pickup Location</td>
+        <td><input id ="pickup_location" type="text" name="pickup_location"></td>
+        </tr>
+        <tr>
+        <tr>
+        <td>Rider's Drop Location </td>
+        <td><input type="text" id ="drop_location" name="drop_location" ></td>
+        </tr>
+        <td>Rider's Pickup Date</td>
+        <td><input type="date"  name="pickup_date" ></td>
+        </tr>
+        <td colspan="2"><input style = "width:70px" type="submit" value="Save" ></td>
+        </tr>
+    </table>
+  </form>
+
+<div>
+  <% if(rides.length && rides.length > 0){ %>
+    <table class="table table-bordered table-hover table-striped">
+    	<thead>
+    		<tr>
+    			<th>Ride From</th>
+    			<th>Rider's Name</th>
+    			<th>Rider's Phone</th>
+    			<th>Ride Start Time</th>
+    			<th>Ride End Time</th>
+
+    		</tr>
+    	</thead>
+    	<tbody>
+        <% for (var i = 0; i < rides.length; i++) { %>
+          <tr>
+            <td><%= rides[i].rider_name %></td>
+          </tr>
+          <% } %>
+
+    	</tbody>
+    </table>
+<%  }
+else if(rides.length == 0){
+  %>
+  <h5> No result found </h5>
+<% }
+else { %>
+
+
+    <% } %>
+  </div>
+
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyCY8sJHx7DaLUKmp9qs_nj6DjLuIJPfAog"></script>
+  <script src="css/jquery.geocomplete.js"></script>
+
+	<script>
+
+  $(function(){
+	$("#pickup_location").geocomplete();
+  $("#drop_location").geocomplete();
+});
+
+	</script>
