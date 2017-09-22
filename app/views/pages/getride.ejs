@@ -23,11 +23,12 @@
     <table class="table table-bordered table-hover table-striped">
     	<thead>
     		<tr>
-    			<th>Ride From</th>
     			<th>Rider's Name</th>
     			<th>Rider's Phone</th>
     			<th>Ride Start Time</th>
-    			<th>Ride End Time</th>
+    			<th>Seats Available</th>
+    			<th>Price Per Cotraveller</th>
+          <th>Action</th>
 
     		</tr>
     	</thead>
@@ -35,6 +36,13 @@
         <% for (var i = 0; i < rides.length; i++) { %>
           <tr>
             <td><%= rides[i].rider_name %></td>
+            <td><%= rides[i].rider_phone %></td>
+            <td><%= rides[i].rider_start_time_hours %></td>
+            <td><%= rides[i].seats_available %></td>
+            <td><%= rides[i].price_per_cotraveller %></td>
+          <td><input type =button style ="width:90px" value = "View Map"> </input></td>
+
+
           </tr>
           <% } %>
 
