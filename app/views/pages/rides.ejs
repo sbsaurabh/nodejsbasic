@@ -76,7 +76,7 @@
   $(function(){
 	$("#pickup_location").geocomplete();
   $("#drop_location").geocomplete();
-  $("#stop_location").geocomplete();
+  $("input[name = 'stopover_location']").geocomplete();
 });
 
   var i=0;
@@ -87,7 +87,7 @@
        i++;
      $('#rideform > tbody > tr').eq(j)
      .after('<tr><td>Stop Over</td><td><input type="text" id ="stop_location1" name="stopover_location" ></td> <td><a href ="#" onclick="deleteStop();return false;">remove stop over location </a></td></tr>');
-     $("#stop_location1").geocomplete();
+     $("input[name = 'stopover_location']").geocomplete();
      j++;
    }
    else{
@@ -99,9 +99,6 @@
   {
     $('#rideform > tbody > tr').eq(6).remove();
     i--;
+    j--;
   }
-
-
-
-
 	</script>
