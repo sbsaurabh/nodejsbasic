@@ -18,7 +18,7 @@
     </table>
   </form>
 
-<div>
+<div style ="float:left; width:55%">
   <% if(rides.length && rides.length > 0){ %>
     <table class="table table-bordered table-hover table-striped">
     	<thead>
@@ -39,8 +39,9 @@
             <td><%= rides[i].rider_phone %></td>
             <td><%= rides[i].rider_start_time_hours %></td>
             <td><%= rides[i].seats_available %></td>
-            <td><%= rides[i].price_per_cotraveller %></td>
-          <td><input type =button style ="width:90px" value = "View Map"> </input></td>
+            <td><%= rides[i].rider_pickup_location.coordinates[0][0] %></td>
+
+          <td><input type ="button" onclick="showMap(<%= rides[i].rider_pickup_location.coordinates[0][0][0] %>,<%=rides[i].rider_pickup_location.coordinates[0][0][1] %>);" style ="width:90px" value = "View Map"> </input></td>
 
 
           </tr>
@@ -58,9 +59,11 @@ else { %>
 
     <% } %>
   </div>
+  <div style ="float:right; height:30%; width:35%"> hello</div>
 
   <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyCY8sJHx7DaLUKmp9qs_nj6DjLuIJPfAog"></script>
   <script src="css/jquery.geocomplete.js"></script>
+  <script src="css/jquery.googlemap.js"></script>
 
 	<script>
 
@@ -70,3 +73,15 @@ else { %>
 });
 
 	</script>
+
+
+    <script>
+    function showMap(val,val1)
+    {
+      alert(val);
+      alert(val1);
+      
+
+    }
+
+    </script>

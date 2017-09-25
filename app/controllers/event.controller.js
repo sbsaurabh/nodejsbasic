@@ -57,7 +57,7 @@ module.exports = {
 														} } } }, {rider_stopover_location: { $geoIntersects: { $geometry: { type: "Point", coordinates:[drop_latitude,drop_longitude]
 														} } } }
 													]
-									} ,
+									},
 									{rider_pickup_date:pickup_date}
       				]
 					},function(err,ride){
@@ -65,8 +65,9 @@ module.exports = {
 							console.log(err);
 						}
 						console.log(ride);
+						//res.send(ride);
 						res.render('pages/getride', {rides:ride});
-						
+
 			});
 		});
 	}
