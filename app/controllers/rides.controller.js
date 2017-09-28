@@ -3,6 +3,7 @@ var Model = require('../models/model');
 const circleToPolygon = require('circle-to-polygon');
 const radius = 1000; // in meters
 const numberOfEdges = 50;
+var dateFormat = require('dateformat');
 
 const NodeGeocoder = require('node-geocoder');
 const options = {
@@ -82,17 +83,21 @@ module.exports = {
 
 					}
 
+					var pickup_date = dateFormat(req.body.pickup_date,"dd/mm/yyyy")
+
 					var ride =new Model.Rides({
 						rider_name:req.body.fname,
 						rider_phone:req.body.phone,
 						rider_pickup_location:pickup_polygon,
 						rider_drop_location:drop_polygon,
 						rider_stopover_location:stopover_location_cor,
-						rider_pickup_date:req.body.pickup_date,
+						rider_pickup_date:pickup_date,
 						rider_start_time_hours:req.body.pickup_hours +":"+ req.body.pickup_minutes,
 						seats_available:req.body.seats,
 						price_per_cotraveller:req.body.price,
 						created_at:new Date(),
+						pickup_location_name:req.body.pickup_location,
+						drop_location_name:req.body.drop_location
 		          });
 						ride.save(function(err,ride){
 							if(err)

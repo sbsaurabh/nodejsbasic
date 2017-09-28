@@ -5,7 +5,7 @@ module.exports = {
 //		 res.render(path.join(__dirname, 'home'));
  var topicHead = 'Home Page';
 
-		res.render('pages/home',{topicHead:'Home Page'});
+		res.render('pages/home',{topicHead:"LET's RIDE" });
 
 	}
 };
