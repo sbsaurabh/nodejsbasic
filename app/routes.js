@@ -9,9 +9,7 @@ router = express.Router(),
 //export router
 module.exports = router;
 router.get('/', mainController.showHome);
-router.get('/events',eventsController.showEvents);
 router.get('/getride',eventsController.getRide);
 router.post('/getride',eventsController.showRelatedRide)
 router.get('/rides',ridesController.showRides);
-
 router.post('/rides',ridesController.raiseRides);

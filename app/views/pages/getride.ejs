@@ -3,15 +3,15 @@
     <table id ="getrideform">
         <tr>
         <td>Rider's Pickup Location</td>
-        <td><input id ="pickup_location" type="text" name="pickup_location"></td>
+        <td><input id ="pickup_location" type="text" name="pickup_location" required="true"></td>
         </tr>
         <tr>
         <tr>
         <td>Rider's Drop Location </td>
-        <td><input type="text" id ="drop_location" name="drop_location" ></td>
+        <td><input type="text" id ="drop_location" name="drop_location" required="true" ></td>
         </tr>
         <td>Rider's Pickup Date</td>
-        <td><input type="date"  name="pickup_date" ></td>
+        <td><input type="date"  name="pickup_date" required="true" placeholder ="YYYY-MM-DD" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" title="Enter a date in this formart YYYY-MM-DD"></td>
         </tr>
         <td colspan="2"><input style = "width:70px" type="submit" value="Save" ></td>
         </tr>
@@ -39,15 +39,16 @@
             <td><%= rides[i].rider_phone %></td>
             <td><%= rides[i].rider_start_time_hours %></td>
             <td><%= rides[i].seats_available %></td>
-            <td><%= rides[i].rider_pickup_location.coordinates[0][0] %></td>
+            <td><%= rides[i].price_per_cotraveller %></td>
 
-          <td><input type ="button" onclick="showMap(<%= rides[i].rider_pickup_location.coordinates[0][0][0] %>,<%=rides[i].rider_pickup_location.coordinates[0][0][1] %>);" style ="width:90px" value = "View Map"> </input></td>
+          <td><input type ="button" onclick="showMap('<%= rides[i].pickup_location_name %>','<%= rides[i].drop_location_name %>');" style ="width:90px" value = "View Map"> </input></td>
 
 
           </tr>
           <% } %>
 
     	</tbody>
+
     </table>
 <%  }
 else if(rides.length == 0){
@@ -58,10 +59,15 @@ else { %>
 
 
     <% } %>
+
+
+
   </div>
-  <div style ="float:right; height:30%; width:35%"> hello</div>
+<div id ="map" style="width: 35%; height: 300px; margin-left :5% float :right;clear:both"></div>
 
   <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyCY8sJHx7DaLUKmp9qs_nj6DjLuIJPfAog"></script>
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCY8sJHx7DaLUKmp9qs_nj6DjLuIJPfAog"></script> -->
+
   <script src="css/jquery.geocomplete.js"></script>
   <script src="css/jquery.googlemap.js"></script>
 
@@ -76,11 +82,17 @@ else { %>
 
 
     <script>
-    function showMap(val,val1)
+    function showMap(pickup,drop)
     {
-      alert(val);
-      alert(val1);
-      
+      $("#map").googleMap();
+      $("#map").addWay({
+    	start: pickup, // Postal address for the start marker (obligatory)
+  		end: drop, // Postal Address or GPS coordinates for the end marker (obligatory)
+  		route : 'way', // Block's ID for the route display (optional)
+  		langage : 'english' // language of the route detail (optional)
+
+	});
+
 
     }
 

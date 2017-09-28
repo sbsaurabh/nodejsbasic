@@ -19,6 +19,8 @@ var Rides = new Schema({
   seats_available:Number,
   price_per_cotraveller:Number,
   created_at:Date,
+  pickup_location_name:String,
+  drop_location_name:String
 })
 
 Rides.index({ "rider_pickup_location": "2dsphere" });

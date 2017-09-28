@@ -1,10 +1,6 @@
-var MongoClient = require('mongodb').MongoClient
-var URL = 'mongodb://localhost:27017/car_pooling';
+
 var Model = require('../models/model');
-
-
-
-
+var dateFormat = require('dateformat');
 const NodeGeocoder = require('node-geocoder');
 const options = {
 provider: 'google',
@@ -15,19 +11,6 @@ formatter: null
 const geocoder = NodeGeocoder(options);
 
 module.exports = {
-	showEvents : function (req,res){
-
-		MongoClient.connect(URL, function(err, db) {
-		db.collection('Rides').find().toArray(function (err, result)  {
-		if (err) return console.log(err)
-			// res.render('index.ejs', {quotes: result})
-		// console.log(result[5].ride);
-		res.render('pages/events', {rides:result,topicHead:''});
-	  	})
-
-		});
-	},
-
 	getRide : function(req,res)
 	{
 		var ride={};
@@ -44,7 +27,9 @@ module.exports = {
 			var pickup_latitude =  result[0].value[0].latitude;
 			var drop_longitude = result[1].value[0].longitude;
 			var drop_latitude =  result[1].value[0].latitude;
-			var pickup_date = req.body.pickup_date;
+			console.log(req.body.pickup_date);
+			var pickup_date = dateFormat(req.body.pickup_date,"dd/mm/yyyy");
+
 				Model.Rides.find({
 				$and: [
 
