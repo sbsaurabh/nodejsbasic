@@ -23,3 +23,9 @@ body{
 	color:#999;
 
 }
+input{
+	width :300px;
+}
+.pac-container:after{
+    content:none !important;
+}

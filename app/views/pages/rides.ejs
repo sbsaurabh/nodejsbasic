@@ -1,6 +1,6 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <form name="form1" method="POST" action="/rides">
-    <table>
+    <table id ="rideform">
         <tr>
         <td>Rider's name</td>
         <td><input type="text" name="fname" ></td>
@@ -10,8 +10,98 @@
         <td><input type="text" name="phone" ></td>
         </tr>
         <tr>
-        <td colspan="2"><input type="submit" value="Save" ></td>
+        <td>Rider's Pickup Location</td>
+        <td><input id ="pickup_location" type="text" name="pickup_location"></td>
+        </tr>
+        <tr>
+        <tr>
+        <td>Rider's Drop Location </td>
+        <td><input type="text" id ="drop_location" name="drop_location" ></td>
+        </tr>
+
+        <tr>
+        <td>Stop Overs </td>
+        <td><input type="text" id ="stop_location" name="stopover_location" ></td>
+        <td><a href ="#" onclick="addStop();return false;">add more stop over location </a></td>
+        </tr>
+
+        <tr>
+        <td>Rider's Pickup Date</td>
+        <td><input type="date"  name="pickup_date" ></td>
+        <td>
+          <select name='pickup_hours'>
+
+            <% for(var i = 0 ; i < 24 ; i++)
+              {
+                  i = (i < 10) ? ("0" + i) : i;
+            %>
+                  <option value = '<%= i %>'> <%= i%> </option>
+            <%
+              }
+            %>
+        </select>
+
+        <select name='pickup_minutes'>
+             <option value = '00'> 00 </option>
+          <% for(var i = 10 ; i <= 60 ; i = i+10)
+            {
+          %>
+                <option value = '<%= i %>'> <%= i%> </option>
+          <%
+            }
+          %>
+      </select>
+    </td>
+        </tr>
+        <tr>
+        <td>Number Of Seats</td>
+        <td><input type="number" min="1" max = "4" name="seats" ></td>
+        </tr>
+        <tr>
+        <td>Price Per CoTraveller</td>
+        <td><input type="number" min="10" step=10 name="price" ></td>
+        </tr>
+        <td colspan="2"><input style = "width:70px" type="submit" value="Save" ></td>
         </tr>
     </table>
-    </form>   
+  </form>
+  <div id="google-map" height= "100px">
+</div>
 
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places&key=AIzaSyCY8sJHx7DaLUKmp9qs_nj6DjLuIJPfAog"></script>
+  <script src="css/jquery.geocomplete.js"></script>
+
+	<script>
+
+  $(function(){
+	$("#pickup_location").geocomplete();
+  $("#drop_location").geocomplete();
+  $("#stop_location").geocomplete();
+});
+
+  var i=0;
+  var j=5;
+  function addStop()
+  {
+     if(i<2){
+       i++;
+     $('#rideform > tbody > tr').eq(j)
+     .after('<tr><td>Stop Over</td><td><input type="text" id ="stop_location1" name="stopover_location" ></td> <td><a href ="#" onclick="deleteStop();return false;">remove stop over location </a></td></tr>');
+     $("#stop_location1").geocomplete();
+     j++;
+   }
+   else{
+     alert("no more stops permit");
+   }
+  }
+
+  function deleteStop()
+  {
+    $('#rideform > tbody > tr').eq(6).remove();
+    i--;
+  }
+
+
+
+
+	</script>
